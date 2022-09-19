@@ -3,6 +3,7 @@ const Bodyparser=require("body-parser");
 const Mongoose=require("mongoose");
 const Cors=require("cors");
 const { studModel } = require("./studModel");
+const { teachModel } = require("./teachModel");
 
 const app=Express()
 
@@ -26,5 +27,21 @@ app.post("/signupstudent",async (req,res)=>{
         }
     })
 })
+
+app.post("/signupteacher",async(req,res)=>{
+    const dataa=req.body
+    const ob=new teachModel(dataa)
+    ob.save((error,dataa)=>{
+        if(error)
+        {
+            res.send("error occurred")
+        }
+        else
+        {
+            res.send(dataa)
+        }
+    })
+})
+
 
 app.listen(3200,()=>{console.log("server running at http://localhost:3200")})
