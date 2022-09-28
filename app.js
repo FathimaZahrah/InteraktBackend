@@ -4,6 +4,7 @@ const Mongoose=require("mongoose");
 const Cors=require("cors");
 const { studModel } = require("./studModel");
 const { teachModel } = require("./teachModel");
+const { subaddModel } = require("./subaddModel");
 
 const app=Express()
 
@@ -43,5 +44,20 @@ app.post("/signupteacher",async(req,res)=>{
     })
 })
 
+app.post("/subadd",async(req,res)=>{
+    const data2=req.body
+    const ob=new subaddModel(data2)
+    ob.save(
+        (error,data2)=>{
+            if(error)
+            {
+                res.send("error occured")
+            }
+            else{
+                res.send(data2)
+            }
+        }
+    )
+})
 
 app.listen(3200,()=>{console.log("server running at http://localhost:3200")})
