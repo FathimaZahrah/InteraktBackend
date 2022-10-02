@@ -5,6 +5,7 @@ const Cors=require("cors");
 const { studModel } = require("./studModel");
 const { teachModel } = require("./teachModel");
 const { subaddModel } = require("./subaddModel");
+const { suballotModel } = require("./suballotModel");
 
 const app=Express()
 
@@ -59,5 +60,35 @@ app.post("/subadd",async(req,res)=>{
         }
     )
 })
+
+app.post("/suballot",async(req,res)=>{
+    const data4=req.body
+    const ob=new suballotModel(data4)
+    ob.save(
+        (error,data4)=>{
+            if(error)
+            {
+                res.send("error occured")
+            }
+            else{
+                res.send(data4)
+            }
+        }
+    )
+})
+
+app.get("/viewSub",async(req,res)=>{
+    subaddModel.find((error,data2)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data2)
+        }
+    })
+})
+
+
 
 app.listen(3200,()=>{console.log("server running at http://localhost:3200")})
