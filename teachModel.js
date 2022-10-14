@@ -4,7 +4,6 @@ const teachModel=Mongoose.model("teachs",Mongoose.Schema({
     teachfac:String,
     teachdept:String,
     teachcourse:String,
-    teachsem:String,
     teachemail:String,
     teachpass:String
 }))

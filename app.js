@@ -6,6 +6,7 @@ const { studModel } = require("./studModel");
 const { teachModel } = require("./teachModel");
 const { subaddModel } = require("./subaddModel");
 const { suballotModel } = require("./suballotModel");
+const { announceModel } = require("./announceModel");
 
 const app=Express()
 
@@ -30,6 +31,23 @@ app.post("/signupstudent",async (req,res)=>{
     })
 })
 
+app.post("/studlog", async (req, res) => {
+    const request=req.body
+    studModel.findOne({ studemail: request.studemail }, (err, data) => {
+        if (data) {
+            if (data.studpass == request.studpass) {
+                res.send({ "success": true, data: data});
+            }
+            else {
+                res.send({ "success": "Invalid email or password!"});
+            }
+        }
+        else {
+            res.send({ "success": "no user found!"});
+        }
+    })
+})
+
 app.post("/signupteacher",async(req,res)=>{
     const dataa=req.body
     const ob=new teachModel(dataa)
@@ -41,6 +59,23 @@ app.post("/signupteacher",async(req,res)=>{
         else
         {
             res.send(dataa)
+        }
+    })
+})
+
+app.post("/teachlog", async (req, res) => {
+    const request=req.body
+    teachModel.findOne({ teachemail: request.teachemail }, (err, dataa) => {
+        if (dataa) {
+            if (dataa.teachpass == request.teachpass) {
+                res.send({ "success": true, dataa: dataa});
+            }
+            else {
+                res.send({"success": "Invalid email or password!"});
+            }
+        }
+        else {
+            res.send({ "success": "no user found!"});
         }
     })
 })
@@ -72,6 +107,22 @@ app.post("/suballot",async(req,res)=>{
             }
             else{
                 res.send(data4)
+            }
+        }
+    )
+})
+
+app.post("/teacherhome",async(req,res)=>{
+    const data6=req.body
+    const ob=new announceModel(data6)
+    ob.save(
+        (error,data6)=>{
+            if(error)
+            {
+                res.send("error occured")
+            }
+            else{
+                res.send(data6)
             }
         }
     )
