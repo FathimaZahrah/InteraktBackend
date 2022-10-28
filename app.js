@@ -140,6 +140,17 @@ app.get("/viewSub",async(req,res)=>{
     })
 })
 
+app.get("/announcements",async(req,res)=>{
+    announceModel.find((error,data3)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data3)
+        }
+    })
+})
 
 
 app.listen(3200,()=>{console.log("server running at http://localhost:3200")})
