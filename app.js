@@ -7,6 +7,14 @@ const { teachModel } = require("./teachModel");
 const { subaddModel } = require("./subaddModel");
 const { suballotModel } = require("./suballotModel");
 const { announceModel } = require("./announceModel");
+const { datanoteModel } = require("./datanoteModel");
+const { dataassignModel } = require("./dataassignModel");
+const { datatestModel } = require("./datatestModel");
+const dataattenModel = require("./dataattenModel");
+const { sqlnoteModel } = require("./sqlnoteModel");
+const { sqlassignModel } = require("./sqlassignModel");
+const { sqltestModel } = require("./sqltestModel");
+const { sqlattenModel } = require("./sqlattenModel");
 
 const app=Express()
 
@@ -128,6 +136,133 @@ app.post("/teacherhome",async(req,res)=>{
     )
 })
 
+app.post("/datanotesteach",async(req,res)=>{
+    const data7=req.body
+    const ob=new datanoteModel(data7)
+    ob.save(
+        (error,data7)=>{
+            if(error)
+            {
+                res.send("error occured")
+            }
+            else{
+                res.send(data7)
+            }
+        }
+    )
+})
+
+app.post("/dataassignteach",async(req,res)=>{
+    const data8=req.body
+    const ob=new dataassignModel(data8)
+    ob.save(
+        (error,data8)=>{
+            if(error)
+            {
+                res.send("error occured")
+            }
+            else{
+                res.send(data8)
+            }
+        }
+    )
+})
+
+app.post("/datatestteach",async(req,res)=>{
+    const data9=req.body
+    const ob=new datatestModel(data9)
+    ob.save(
+        (error,data9)=>{
+            if(error)
+            {
+                res.send("error occured")
+            }
+            else{
+                res.send(data9)
+            }
+        }
+    )
+})
+
+app.post("/dataattenteach",async(req,res)=>{
+    const data10=req.body
+    const ob=new dataattenModel(data10)
+    ob.save(
+        (error,data10)=>{
+            if(error)
+            {
+                res.send("error occured")
+            }
+            else{
+                res.send(data10)
+            }
+        }
+    )
+})
+
+app.post("/mynotestud",async(req,res)=>{
+    const data11=req.body
+    const ob=new sqlnoteModel(data11)
+    ob.save(
+        (error,data11)=>{
+            if(error)
+            {
+                res.send("error occurred")
+            }
+            else{
+                req.send(data11)
+            }
+        }
+    )
+})
+
+app.post("/myassignteach",async(req,res)=>{
+    const data12=req.body
+    const ob=new sqlassignModel(data12)
+    ob.save(
+        (error,data12)=>{
+            if(error)
+            {
+                res.send("error occurred")
+            }
+            else{
+                req.send(data12)
+            }
+        }
+    )
+})
+
+app.post("/mytestteach",async(req,res)=>{
+    const data13=req.body
+    const ob=new sqltestModel(data13)
+    ob.save(
+        (error,data13)=>{
+            if(error){
+                res.send("error occurred")
+            }
+            else{
+                req.send(data13)
+            }
+        }
+    )
+})
+
+app.post("/myattenteach",async(req,res)=>{
+    const data14=req.body
+    const ob=new sqlattenModel(data14)
+    ob.save(
+        (error,data14)=>{
+            if(error)
+            {
+                res.send("error occurred")
+            }
+            else{
+                req.send(data14)
+            }
+        }
+    )
+})
+
 app.get("/viewSub",async(req,res)=>{
     subaddModel.find((error,data2)=>{
         if(error)
@@ -152,5 +287,100 @@ app.get("/announcements",async(req,res)=>{
     })
 })
 
+app.get("/dataminenotes",async(req,res)=>{
+    datanoteModel.find((error,data4)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data4)
+        }
+    })
+})
+
+app.get("/datamineassign",async(req,res)=>{
+    dataassignModel.find((error,data5)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data5)
+        }
+    })
+})
+
+app.get("/dataminetest",async(req,res)=>{
+    datatestModel.find((error,data6)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data6)
+        }
+    })
+})
+
+app.get("/datamineatten",async(req,res)=>{
+    dataattenModel.find((error,data7)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data7)
+        }
+    })
+})
+
+app.get("/mysqlnotes",async(req,res)=>{
+    sqlnoteModel.find((error,data8)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data8)
+        }
+    })
+})
+
+app.get("/mysqlassign",async(req,res)=>{
+    sqlassignModel.find((error,data9)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data9)
+        }
+    })
+})
+
+app.get("/mysqltest",async(req,res)=>{
+    sqltestModel.find((error,data10)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data10)
+        }
+    })
+})
+
+app.get("/mysqlatten",async(req,res)=>{
+    sqlattenModel.find((error,data11)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data11)
+        }
+    })
+})
 
 app.listen(3200,()=>{console.log("server running at http://localhost:3200")})
