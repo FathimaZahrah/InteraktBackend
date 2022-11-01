@@ -383,4 +383,28 @@ app.get("/mysqlatten",async(req,res)=>{
     })
 })
 
+app.get("/studDetail",async(req,res)=>{
+    studModel.find((error,data12)=>{
+        if(error)
+        {
+            res.send(error)
+        }
+        else{
+            res.send(data12)
+        }
+    })
+})
+
+app.get("/teachDetail",async(req,res)=>{
+    teachModel.find((error,data13)=>{
+        if(error)
+        {
+             res.send(error)
+        }
+        else{
+            res.send(data13)
+        }
+    })
+})
+
 app.listen(3200,()=>{console.log("server running at http://localhost:3200")})
