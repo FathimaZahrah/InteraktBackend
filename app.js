@@ -11,10 +11,10 @@ const { datanoteModel } = require("./datanoteModel");
 const { dataassignModel } = require("./dataassignModel");
 const { datatestModel } = require("./datatestModel");
 const dataattenModel = require("./dataattenModel");
-const { sqlnoteModel } = require("./sqlnoteModel");
 const { sqlassignModel } = require("./sqlassignModel");
 const { sqltestModel } = require("./sqltestModel");
 const { sqlattenModel } = require("./sqlattenModel");
+const { sqlnoteModel } = require("./sqlnoteModel");
 
 const app=Express()
 
@@ -200,17 +200,17 @@ app.post("/dataattenteach",async(req,res)=>{
     )
 })
 
-app.post("/mynotestud",async(req,res)=>{
+app.post("/mynotesteach",async(req,res)=>{
     const data11=req.body
     const ob=new sqlnoteModel(data11)
     ob.save(
         (error,data11)=>{
             if(error)
             {
-                res.send("error occurred")
+                res.send("error occured")
             }
             else{
-                req.send(data11)
+                res.send(data11)
             }
         }
     )
@@ -226,7 +226,7 @@ app.post("/myassignteach",async(req,res)=>{
                 res.send("error occurred")
             }
             else{
-                req.send(data12)
+                res.send(data12)
             }
         }
     )
@@ -241,7 +241,7 @@ app.post("/mytestteach",async(req,res)=>{
                 res.send("error occurred")
             }
             else{
-                req.send(data13)
+                res.send(data13)
             }
         }
     )
@@ -257,7 +257,7 @@ app.post("/myattenteach",async(req,res)=>{
                 res.send("error occurred")
             }
             else{
-                req.send(data14)
+                res.send(data14)
             }
         }
     )

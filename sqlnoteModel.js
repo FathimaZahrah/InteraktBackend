@@ -1,5 +1,5 @@
 const Mongoose=require("mongoose")
-const sqlnoteModel=Mongoose.model("notessqls",Mongoose.Schema({
-notesql:String
+const sqlnoteModel=Mongoose.model("sqlnotes",Mongoose.Schema({
+    notes:String
 }))
 module.exports={sqlnoteModel}
